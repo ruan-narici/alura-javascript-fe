@@ -1,13 +1,15 @@
 const form = document.querySelector('#novoItem');
 let listaItens = JSON.parse(localStorage.getItem("itens")) || [];
 
+let id = listaItens.length;
+
 form.addEventListener('submit', (evento) => {
 
     evento.preventDefault();
 
     const nome = evento.target.elements['nome'].value;
     const quantidade = evento.target.elements['quantidade'].value;
-    let id = listaItens.length + 1;
+    id ++; 
 
     if (editarElemento(listaItens, nome, quantidade)) {
         limpaInput(evento);
@@ -28,6 +30,7 @@ criarElemento = (nome, quantidade) => {
     elementoStrong.textContent = quantidade;
     elementoLi.appendChild(elementoStrong);
     elementoLi.innerHTML += nome;
+    elementoLi.appendChild(btnExcluir(nome));
     const lista = document.querySelector('[data-lista]');
     lista.appendChild(elementoLi);
 }
@@ -80,5 +83,22 @@ editarElemento = (itens, nome, quantidade) => {
         return false;
     }
 } 
+
+btnExcluir = (nome) => {
+    const btn = document.createElement('button');
+    btn.textContent = "x";
+
+    btn.addEventListener('click', (evento) => {
+        let liEvento = evento.target.parentNode;
+        let index = listaItens.findIndex(item => item.nome === nome);
+        listaItens.splice(index, 1);
+        liEvento.remove();
+        console.log(index);
+        editarLocalStorage();
+    })
+
+    return btn;
+
+}
 
 carregarListaLocalStorage(listaItens);

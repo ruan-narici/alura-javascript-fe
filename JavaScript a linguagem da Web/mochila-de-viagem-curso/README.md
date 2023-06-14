@@ -1,1 +1,2 @@
-# alura-armazenando-na-web
+## Alura-armazenando-na-web
+![](./assets/img/preview.png)
