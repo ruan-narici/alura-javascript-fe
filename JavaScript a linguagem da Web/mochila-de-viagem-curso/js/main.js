@@ -1,5 +1,5 @@
 const form = document.querySelector('#novoItem');
-let listaItens = [];
+let listaItens = JSON.parse(localStorage.getItem("itens")) || [];
 
 form.addEventListener('submit', (evento) => {
 
@@ -10,6 +10,7 @@ form.addEventListener('submit', (evento) => {
 
     criarElemento(nome, quantidade);
     salvarLocalStorage(nome, quantidade);
+    limpaInput(evento);
 })
 
 criarElemento = (nome, quantidade) => {
@@ -36,3 +37,21 @@ salvarLocalStorage = (nome, quantidade) => {
     listaItensJson = JSON.stringify(listaItens);
     localStorage.setItem("itens", listaItensJson);
 }
+
+carregarListaLocalStorage = (lista) => {
+
+    lista.forEach(item => {
+        let nome = item.nome;
+        let quantidade = item.quantidade;
+
+        criarElemento(nome, quantidade);
+    })
+}
+
+limpaInput = (evento) => {
+    
+    evento.target.elements['nome'].value = '';
+    evento.target.elements['quantidade'].value = '';
+}
+
+carregarListaLocalStorage(listaItens);
