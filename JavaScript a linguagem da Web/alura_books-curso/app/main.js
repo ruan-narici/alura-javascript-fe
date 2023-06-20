@@ -10,8 +10,12 @@ let mf = new metodoFilter();
 import metodoSort from "./metodoSort.js";
 let ms = new metodoSort();
 
+import metodoReduce from "./metodoReduce.js";
+let mr = new metodoReduce();
+
 
 const btnPreco = document.querySelector('#btnOrdenarPorPreco');
+const divDesconto = document.querySelector('#valor_total_livros_disponiveis');
 const botoes = document.querySelectorAll('.btn');
 let livros = [];
 
@@ -39,7 +43,9 @@ async function getLivros() {
 function filtraCategoria(lista) {
     botoes.forEach(botao => {
         botao.addEventListener('click', () => {
+            divDesconto.innerHTML = '';
             let listaCategoria = botao.value == 'disponivel' ? mf.filtrarPorDisponibilidade(lista) : mf.filtrarPorCategoria(lista, botao.value);
+            botao.value == 'disponivel' ? mr.defineDesconto(lista) : null;
             // console.table(listaCategoria);
             fe.exibeLivros(listaCategoria);
         })
