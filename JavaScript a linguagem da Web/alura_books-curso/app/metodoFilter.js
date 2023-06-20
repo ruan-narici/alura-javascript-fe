@@ -5,6 +5,11 @@ const metodoFilter = class {
         return listaCategoria;
     }
 
+    filtrarPorDisponibilidade = (lista) => {
+        let listaDisponibilidade = lista.filter(elemento => elemento.quantidade > 0);
+        return listaDisponibilidade;
+    }
+
     
 }
 

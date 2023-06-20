@@ -7,6 +7,11 @@ let mm = new metodoMap();
 import metodoFilter from "./metodoFilter.js";
 let mf = new metodoFilter();
 
+import metodoSort from "./metodoSort.js";
+let ms = new metodoSort();
+
+
+const btnPreco = document.querySelector('#btnOrdenarPorPreco');
 const botoes = document.querySelectorAll('.btn');
 let livros = [];
 
@@ -22,7 +27,8 @@ async function getLivros() {
         //console.table(livros);
 
         fe.exibeLivros(livrosDesconto);
-        filtrar(livrosDesconto);
+        filtraCategoria(livrosDesconto);
+        filtraPreco(livrosDesconto);
 
     } catch (erro) {
         console.log(erro)
@@ -30,14 +36,21 @@ async function getLivros() {
     }
 }
 
-function filtrar(lista) {
+function filtraCategoria(lista) {
     botoes.forEach(botao => {
         botao.addEventListener('click', () => {
-            let listaCategoria = mf.filtrarPorCategoria(lista, botao.value);
+            let listaCategoria = botao.value == 'disponivel' ? mf.filtrarPorDisponibilidade(lista) : mf.filtrarPorCategoria(lista, botao.value);
             // console.table(listaCategoria);
             fe.exibeLivros(listaCategoria);
         })
     })
+}
+
+function filtraPreco(lista) {
+    btnPreco.addEventListener('click', () => {
+        let listaPreco = ms.filtrarPorPreco(lista);
+        fe.exibeLivros(listaPreco);
+    });
 }
 
 

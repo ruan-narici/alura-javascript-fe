@@ -6,9 +6,11 @@ const metodoForEach = class {
     exibeLivros = (livros) => {
         sectionLivros.innerHTML = '';
         livros.forEach(livro => {
+            let quantidade = livro.quantidade;
+            let disponibilidade = quantidade > 0 ? "livro__imagens" : "livro__imagens indisponivel";
             sectionLivros.innerHTML += `
         <div class="livro">
-            <img class="livro__imagens" src="${livro.imagem}" alt="Capa do livro Cangaceiro JavaScript" />
+            <img class="${disponibilidade}" src="${livro.imagem}" alt="Capa do livro Cangaceiro JavaScript" />
             <h2 class="livro__titulo">
                 ${livro.titulo}
             </h2>
