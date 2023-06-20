@@ -6,7 +6,7 @@ const metodoMap = class {
         let arrayLivroDesconto = livros.map(livro => {
             return {
                 ...livro, 
-                preco: (livro.preco - (livro.preco * desconto)).toFixed(2)
+                preco: (livro.preco - (livro.preco * desconto))
             }
         })
 

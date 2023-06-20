@@ -4,7 +4,7 @@ const metodoForEach = class {
     
 
     exibeLivros = (livros) => {
-
+        sectionLivros.innerHTML = '';
         livros.forEach(livro => {
             sectionLivros.innerHTML += `
         <div class="livro">

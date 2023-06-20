@@ -4,6 +4,10 @@ let fe = new metodoForEach();
 import metodoMap from "./metodoMap.js";
 let mm = new metodoMap();
 
+import metodoFilter from "./metodoFilter.js";
+let mf = new metodoFilter();
+
+const botoes = document.querySelectorAll('.btn');
 let livros = [];
 
 async function getLivros() {
@@ -13,15 +17,28 @@ async function getLivros() {
         livros = livrosJson;
 
         let livrosDesconto = mm.aplicarDesconto(livros);
-        console.table(livrosDesconto);
+        //console.table(livrosDesconto);
 
-        console.table(livros);
+        //console.table(livros);
 
-        fe.exibeLivros(livros);
+        fe.exibeLivros(livrosDesconto);
+        filtrar(livrosDesconto);
+
     } catch (erro) {
         console.log(erro)
         console.log('Não foi possível realizar a solicitação.');
     }
 }
+
+function filtrar(lista) {
+    botoes.forEach(botao => {
+        botao.addEventListener('click', () => {
+            let listaCategoria = mf.filtrarPorCategoria(lista, botao.value);
+            // console.table(listaCategoria);
+            fe.exibeLivros(listaCategoria);
+        })
+    })
+}
+
 
 getLivros();
