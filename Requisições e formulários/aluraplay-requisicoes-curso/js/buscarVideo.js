@@ -22,3 +22,4 @@ async function buscarVideoPorFiltro(evento) {
 }
 
 btnPesquisa.addEventListener('click', evento => buscarVideoPorFiltro(evento));
+
