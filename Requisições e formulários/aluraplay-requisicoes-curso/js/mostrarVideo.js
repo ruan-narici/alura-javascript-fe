@@ -29,4 +29,8 @@ async function listaVideo() {
     })
 }
 
+export const mostrarVideo = {
+    constroiCard
+}
+
 listaVideo();

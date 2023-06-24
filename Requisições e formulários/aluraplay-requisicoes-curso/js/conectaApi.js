@@ -1,7 +1,14 @@
 const urlConexao = `http://localhost:3000/videos`;
 
-async function capturarApi() {
-    const dadosApi = await fetch(urlConexao);
+async function capturarApi(filtro) {
+    
+    let dadosApi = null;
+    if (filtro) {
+        dadosApi = await fetch(`${urlConexao}?q=${filtro}`);
+    } else {
+        dadosApi = await fetch(`${urlConexao}`);
+    }
+    
     let dadosApiJson = await dadosApi.json();
     return dadosApiJson;
 }
