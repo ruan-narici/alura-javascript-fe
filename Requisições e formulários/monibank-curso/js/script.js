@@ -2,6 +2,7 @@ import ehUmCpf from "./validaCpf.js";
 import ehMaiorDeIdade from "./validaIdade.js";
 
 const camposDoFormulario = document.querySelectorAll('[required]');
+const formulario1 = document.querySelector('[data-formulario]');
 
 const tiposDeErro = [
     'valueMissing',
@@ -75,8 +76,6 @@ function verificaCampo(campo) {
     }
 }
 
-const formulario1 = document.querySelector('[data-formulario]');
-
 formulario1.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -89,6 +88,6 @@ formulario1.addEventListener('submit', (e) => {
     };
 
     localStorage.setItem("cadastro", JSON.stringify(listaRespostas));
-
     window.location.href = "./abrir-conta-form-2.html";
-})
+});
+
