@@ -8,6 +8,7 @@ const mensagem = document.querySelector("[data-mensagem]");
 
 let imagemURL = "";
 
+//Iniciando a captura da webcamm
 botaoIniciarCamera.addEventListener('click', async function() {
     const iniciarVideo = await navigator.mediaDevices
         .getUserMedia({video: true, audio: false});
@@ -17,6 +18,9 @@ botaoIniciarCamera.addEventListener('click', async function() {
     video.srcObject = iniciarVideo;
 } )
 
+//Capturando uma imagem e inserindo no canvas. 
+//Apos isso,  transformamos a imagem gerada no canvas 
+//em uma URL, o que nos possibilitará salvá-la posteriormente. 
 botaoTirarFoto.addEventListener('click', function () {
     canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
 
